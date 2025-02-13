@@ -27,6 +27,8 @@ export HERD_PHP_81_INI_SCAN_DIR="/Users/qip-innovation/Library/Application Suppo
 # Herd injected PHP 8.0 configuration.
 export HERD_PHP_80_INI_SCAN_DIR="/Users/qip-innovation/Library/Application Support/Herd/config/php/80/"
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Fuzzy Finder
 source <(fzf --zsh)
 bindkey "ç" fzf-cd-widget
@@ -66,6 +68,7 @@ setopt PROMPT_SUBST
 export PROMPT='${COLOR_DIR}$(get_home_dir) ${COLOR_GIT}$(parse_git_branch) ${COLOR_MODIFIER}$(get_node_version)${NEWLINE}${COLOR_MODIFIER}$ ${COLOR_DEF}'
 
 # Neovim
+export MYNVIMRC="$HOME/.config/nvim/init.lua"
 export COLORTERM=truecolor
 alias vi=nvim
 alias vim=nvim
