@@ -29,9 +29,7 @@ echo "done..."
 echo "Creating symlinks for ~/.config files"
 mkdir -p $old_dir/.config
 for config in $config_files; do
-    if [ $(ls $dir | grep $config) ]; then
-        mv $config_dir/$config $old_dir/.config/$config
-        ln -s $dir/$config $config_dir/$config
-    fi
+    mv $config_dir/$config $old_dir/.config
+    ln -s $dir/$config $config_dir
 done
 echo "done..."
