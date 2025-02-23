@@ -1,9 +1,10 @@
 #!/bin/bash
 
-selected=`ls | fzf`
+dotfiles=~/.dotfiles
+selected=`ls $dotfiles | grep -v edit | fzf`
 
 if [ $selected ]; then
-    tmux neww bash -c "nvim $selected & while [ : ]; do sleep 1; done"
+    tmux neww -n config bash -c "nvim $dotfiles/$selected & while [ : ]; do sleep 1; done"
 else
-    tmux neww bash -c "nvim & while [ : ]; do sleep 1; done"
+    tmux neww -n config bash -c "nvim $dotfiles & while [ : ]; do sleep 1; done"
 fi
