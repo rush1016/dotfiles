@@ -1,3 +1,6 @@
+# Local user scripts
+export PATH="$HOME/.local/bin:$PATH"
+
 export NVM_DIR="/Users/qip-innovation/Library/Application Support/Herd/config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 export DEFAULT_NODE_VERSION="v16.13.2"
@@ -28,6 +31,10 @@ export HERD_PHP_81_INI_SCAN_DIR="/Users/qip-innovation/Library/Application Suppo
 export HERD_PHP_80_INI_SCAN_DIR="/Users/qip-innovation/Library/Application Support/Herd/config/php/80/"
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
+alias ls='ls -F --color=auto'
+alias la='ls -A'
+alias lla='la -l'
 
 # Fuzzy Finder
 source <(fzf --zsh)
@@ -85,3 +92,5 @@ if type brew &>/dev/null; then
     autoload -Uz compinit
     compinit
 fi
+
+bindkey -s '^F' '~/.local/bin/tmux-sessionizer\n'
