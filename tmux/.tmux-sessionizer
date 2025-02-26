@@ -1,0 +1,4 @@
+tmux rename-window "$(basename $(pwd))"
+tmux send-keys "nvim" c-M
+
+tmux new-window -n docker
