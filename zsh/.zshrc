@@ -1,9 +1,11 @@
 # Local user scripts
 export PATH="$HOME/.local/bin:$PATH"
 
-export NVM_DIR="/Users/qip-innovation/Library/Application Support/Herd/config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 export DEFAULT_NODE_VERSION="v16.13.2"
+export NODE_VERSION="v16.13.2"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
 
@@ -94,3 +96,4 @@ if type brew &>/dev/null; then
 fi
 
 bindkey -s '^F' '~/.local/bin/tmux-sessionizer\n'
+
