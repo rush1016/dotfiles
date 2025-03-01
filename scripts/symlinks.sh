@@ -24,7 +24,7 @@ echo "Creating symlinks for \$HOME config files"
 for home_config_dir in $home_config_dirs; do
     for file in $(ls -A $dir/$home_config_dir); do
         mv ~/.$file $old_dir/ 2> /dev/null
-        ln -s $dir/.$file ~/.$file 2> /dev/null
+        ln -s $dir/$home_config_dir/$file ~/$file 2> /dev/null
         echo "Linked $file"
     done
 done
