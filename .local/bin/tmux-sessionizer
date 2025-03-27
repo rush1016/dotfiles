@@ -24,7 +24,9 @@ if [[ $# -eq 1 ]]; then
 else
     # If someone wants to make this extensible, i'll accept
     # PR
-    selected=$(find ~/work -mindepth 4 -maxdepth 4 -type d | grep src | fzf)
+    core=$(find ~/work/laravel-docker -mindepth 3 -maxdepth 3 -type d | grep src )
+    work=$(find ~/work -mindepth 1 -maxdepth 1 -type d | grep -v laravel-docker)
+    selected=$(echo "$core $work" | tr ' ' '\n' | fzf)
 fi
 
 if [[ -z $selected ]]; then
