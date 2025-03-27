@@ -44,7 +44,7 @@ bindkey "ç" fzf-cd-widget
 
 # Prompt
 function parse_git_branch() {
-    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/git:(\1) /p'
 }
 
 function get_home_dir() {
@@ -53,11 +53,11 @@ function get_home_dir() {
     local length=${#stripped_path}
 
     if [[ $PWD == $HOME ]]; then
-        echo "~";
+        echo "~ ";
     elif [[ $length -le 40 ]]; then
-        echo "%~"
+        echo "%~ "
     else
-        echo "%1d";
+        echo "%1d ";
     fi
 }
 
@@ -74,7 +74,7 @@ COLOR_GIT=$'%F{39}'
 COLOR_MODIFIER=$'%F{049}'
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
-export PROMPT='${COLOR_DIR}$(get_home_dir) ${COLOR_GIT}$(parse_git_branch) ${COLOR_MODIFIER}$(get_node_version)${NEWLINE}${COLOR_MODIFIER}$ ${COLOR_DEF}'
+export PROMPT='${COLOR_MODIFIER}➜ ${COLOR_DIR}$(get_home_dir)${COLOR_GIT}$(parse_git_branch)${COLOR_MODIFIER}$(get_node_version)${COLOR_DEF}'
 
 # Neovim
 export MYNVIMRC="$HOME/.config/nvim/init.lua"
