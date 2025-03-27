@@ -3,5 +3,5 @@ gui:
   expandFocusedSidePanel: true
 git:
   commitPrefix:
-    pattern: "^(\\w+)\\/(\\w+-\\w+).*"
-    replace: '$1($2): '
+    - pattern: "^(\\w+)\\/(\\w+-\\w+).*"
+      replace: '$1($2): '

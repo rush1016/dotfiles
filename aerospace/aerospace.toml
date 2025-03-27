@@ -207,21 +207,8 @@ if.app-id = 'com.apple.finder'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace M1'
-
-[[on-window-detected]]
-if.app-id = 'com.electron.dockerdesktop'
-run = 'move-node-to-workspace 4'
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.VSCode'
-run = 'move-node-to-workspace 2'
-
-[[on-window-detected]]
 if.app-id = 'com.googlecode.iterm2'
 run = [ 'move-node-to-workspace 2' ]
-
 
 [[on-window-detected]]
 if.app-id = 'com.postmanlabs.mac'
