@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-echo "Search Pull Request by hash\nEnter commit hash: "
+tput cup $(tput lines)
+echo -n "Search Pull Request by hash: "
 read hash
 
-gh pr list --search "$hash" --state merged --json number,title,url,author,createdAt > /tmp/pr_results.json
+gh pr list --search "$hash" --state all --json number,title,url,author,createdAt > /tmp/pr_results.json
 
 tmux neww -n pr-results bash -c "
   jq -r '.[] | \"\(.number): \(.title) (by \(.author.login))\"' /tmp/pr_results.json | 
