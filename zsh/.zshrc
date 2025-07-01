@@ -61,12 +61,6 @@ function get_home_dir() {
     fi
 }
 
-function get_node_version() {
-    if [[ -d node_modules ]];
-        then echo "$(node -v) ";
-    fi
-}
-
 COLOR_DEF=$'%f'
 COLOR_USR=$'%F{243}'
 COLOR_DIR=$'%F{197}'
@@ -74,17 +68,17 @@ COLOR_GIT=$'%F{39}'
 COLOR_MODIFIER=$'%F{049}'
 NEWLINE=$'\n'
 setopt PROMPT_SUBST
-export PROMPT='${COLOR_MODIFIER}➜ ${COLOR_DIR}$(get_home_dir)${COLOR_GIT}$(parse_git_branch)${COLOR_MODIFIER}$(get_node_version)${COLOR_DEF}'
+export PROMPT='${COLOR_MODIFIER}➜ ${COLOR_DIR}$(get_home_dir)${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}'
 
 # Neovim
 export MYNVIMRC="$HOME/.config/nvim/init.lua"
 export COLORTERM=truecolor
-alias vi=nvim
+# alias vi=nvim
 alias vim=nvim
 
 # Suggestions and Completions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=yellow"
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '^I' autosuggest-accept
 
@@ -96,4 +90,18 @@ if type brew &>/dev/null; then
 fi
 
 bindkey -s '^F' '~/.local/bin/tmux-sessionizer\n'
+
+. "$(brew --prefix asdf)/libexec/asdf.sh"
+export PATH=$PATH:$(go env GOPATH)/bin
+
+# work aliases
+alias dps="docker ps --format \"table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\""
+ds() { docker stop $(docker ps -q) }
+alias dcs="dc start"
+alias dc="docker compose"
+alias dcr="ds && dcs"
+alias tinker="dc exec php php artisan tinker"
+alias artisan="dc exec php php artisan"
+alias db="dc exec mysql mysql -u root -p "
+alias coredb="dc exec mysql mysql -u root -p customizer_core"
 
