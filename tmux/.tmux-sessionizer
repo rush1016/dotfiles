@@ -1,5 +1,5 @@
 tmux rename-window neovim
 tmux send-keys "nvim" c-M
 
-tmux new-window -n docker
+tmux new-window -n term
 tmux previous-window
