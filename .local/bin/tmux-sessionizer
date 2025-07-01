@@ -39,8 +39,6 @@ tmux_running=$(pgrep tmux)
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -ds $selected_name -c $selected
     hydrate $selected_name $selected
-    switch_to $selected_name
-    exit 0
 fi
 
 if ! has_session $selected_name; then
