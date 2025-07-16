@@ -96,10 +96,8 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 # work aliases
 alias dps="docker ps --format \"table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\""
-ds() { docker stop $(docker ps -q) }
-alias dcs="dc start"
 alias dc="docker compose"
-alias dcr="ds && dcs"
+alias dcr="~/.dotfiles/scripts/docker-compose-restart.sh"
 alias tinker="dc exec php php artisan tinker"
 alias artisan="dc exec php php artisan"
 alias db="dc exec mysql mysql -u root -p "
