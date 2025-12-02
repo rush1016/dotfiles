@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-tput cup $(tput lines)
-echo -n "Search Pull Request by hash: "
-read hash
+input="$1"
 
-gh pr list --search "$hash" --state all --json number,title,url,author,createdAt > /tmp/pr_results.json
+if [ -z "$input" ]; then
+    tput cup $(($(tput lines) - 1)) 0
+    echo -n "Search Pull Request by hash: "
+    read input
+fi
+
+gh pr list --search "$input" --state all --json number,title,url,author,createdAt > /tmp/pr_results.json
 
 jq -r '.[] | "\(.number): \(.title) (by \(.author.login))"' /tmp/pr_results.json | 
     fzf --preview 'echo {1} | tr -d ":" | xargs -I% jq -r ".[] | select(.number == (% | tonumber))" /tmp/pr_results.json' \
