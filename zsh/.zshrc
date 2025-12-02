@@ -37,6 +37,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 alias ls='ls -F --color=auto'
 alias la='ls -A'
 alias lla='la -l'
+alias ld='ls -d */'
 
 # Fuzzy Finder
 source <(fzf --zsh)
@@ -102,4 +103,10 @@ alias tinker="dc exec php php artisan tinker"
 alias artisan="dc exec php php artisan"
 alias db="dc exec mysql mysql -u root -p "
 alias coredb="dc exec mysql mysql -u root -p customizer_core"
+alias findpr="~/.dotfiles/scripts/search-pull-request-by-hash.sh"
 
+function dbi() {
+    source_path=$1
+    db=$2
+    pv $source_path | dc exec -it mysql mysql -u root -psecret $db
+}
